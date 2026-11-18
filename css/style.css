@@ -1,0 +1,859 @@
+/* ============================================================================
+   To-Do List Life Dashboard — css/style.css
+   ----------------------------------------------------------------------------
+   Theming is driven entirely by CSS custom properties. The default `:root`
+   values are the LIGHT Mode palette. Setting
+   `document.documentElement.dataset.theme = "dark"` activates the dark palette
+   via the `[data-theme="dark"]` overrides below. No external resources, no
+   @import, no web fonts, no CDN — pure CSS only.
+   ----------------------------------------------------------------------------
+   Expected HTML structure (IDs / classes the renderers in script.js rely on):
+
+     <div class="dashboard">
+       <header class="dashboard-header">
+         <div class="header-titles">
+           <h1 id="greeting">…</h1>
+           <p id="clock" class="clock">…</p>
+         </div>
+         <button id="theme-toggle" class="theme-toggle">…</button>
+       </header>
+
+       <main class="dashboard-grid">
+         <section class="card task-section">
+           <h2>Tasks</h2>
+           <form id="task-form" class="inline-form">
+             <input id="task-input" type="text" placeholder="Add a task…">
+             <button type="submit">Add</button>
+           </form>
+           <p id="duplicate-message" class="message message-warning hidden">…</p>
+           <ul id="task-list" class="task-list"></ul>
+           <p id="task-empty" class="empty-state">No tasks yet.</p>
+         </section>
+
+         <section class="card quick-link-section">
+           <h2>Quick Links</h2>
+           <form id="quick-link-form" class="stacked-form">
+             <input id="quick-link-title" type="text" placeholder="Title">
+             <input id="quick-link-url" type="text" placeholder="URL">
+             <button type="submit">Add Link</button>
+           </form>
+           <ul id="quick-link-list" class="quick-link-list"></ul>
+           <p id="quick-link-empty" class="empty-state">No quick links yet.</p>
+         </section>
+
+         <section class="card user-name-section">
+           <h2>Your Name</h2>
+           <form id="user-name-form" class="inline-form">
+             <input id="user-name-input" type="text" placeholder="Enter your name">
+             <button type="submit">Save</button>
+             <button type="button" id="user-name-clear" class="btn-secondary">Clear</button>
+           </form>
+         </section>
+       </main>
+     </div>
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   1. Custom properties — Light Mode (default `:root`)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & background */
+  --color-bg: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f9fafd;
+
+  /* Text */
+  --color-text: #1f2430;
+  --color-text-muted: #6b7280;
+
+  /* Brand / accent */
+  --color-primary: #5b6cff;
+  --color-primary-hover: #4858e6;
+  --color-primary-contrast: #ffffff;
+
+  /* States */
+  --color-danger: #e0484f;
+  --color-danger-hover: #c93d43;
+  --color-success: #2ea36b;
+  --color-warning: #b45309;
+  --color-warning-bg: #fff4e0;
+  --color-warning-border: #f4c98a;
+
+  /* Lines & inputs */
+  --color-border: #e2e6ef;
+  --color-input-bg: #ffffff;
+  --color-input-border: #d4d9e6;
+  --color-input-focus: #5b6cff;
+
+  /* Completed task visual distinction */
+  --color-completed: #9aa3b2;
+
+  /* Shape & elevation */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-input: none;
+
+  /* Layout spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --content-max: 1100px;
+}
+
+/* ----------------------------------------------------------------------------
+   2. Custom properties — Dark Mode override
+   `document.documentElement.dataset.theme = "dark"` matches this selector.
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --color-bg: #0f1320;
+  --color-surface: #171c2c;
+  --color-surface-alt: #1e2436;
+
+  --color-text: #e7eaf3;
+  --color-text-muted: #9aa3b8;
+
+  --color-primary: #7c8bff;
+  --color-primary-hover: #9aa6ff;
+  --color-primary-contrast: #0f1320;
+
+  --color-danger: #ff6b6f;
+  --color-danger-hover: #ff8588;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-warning-bg: #3a2a14;
+  --color-warning-border: #6b4a1f;
+
+  --color-border: #2a3144;
+  --color-input-bg: #1e2436;
+  --color-input-border: #2f3a52;
+  --color-input-focus: #7c8bff;
+
+  --color-completed: #5b6478;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.35);
+  --shadow-input: 0 0 0 1px var(--color-input-border);
+}
+
+/* ----------------------------------------------------------------------------
+   3. Base / reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-stack);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ----------------------------------------------------------------------------
+   4. Utility — `.hidden` toggled by JS to hide elements (display: none)
+   -------------------------------------------------------------------------- */
+.hidden {
+  display: none !important;
+}
+
+/* ----------------------------------------------------------------------------
+   5. Dashboard shell
+   -------------------------------------------------------------------------- */
+.dashboard {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding: var(--space-5) var(--space-4);
+}
+
+/* ----------------------------------------------------------------------------
+   6. Header — greeting, clock, theme toggle
+   -------------------------------------------------------------------------- */
+.dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+#greeting {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.clock {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.theme-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-primary);
+}
+
+.theme-toggle:active {
+  transform: scale(0.96);
+}
+
+/* ----------------------------------------------------------------------------
+   7. Cards / sections
+   -------------------------------------------------------------------------- */
+.dashboard-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+}
+
+.card h2 {
+  margin-bottom: var(--space-4);
+  font-size: 1.1rem;
+}
+
+/* ----------------------------------------------------------------------------
+   8. Forms
+   -------------------------------------------------------------------------- */
+.inline-form {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.inline-form input[type="text"] {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.stacked-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stacked-form button {
+  align-self: flex-start;
+}
+
+/* ----------------------------------------------------------------------------
+   9. Inputs & buttons
+   -------------------------------------------------------------------------- */
+input[type="text"] {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]::placeholder {
+  color: var(--color-text-muted);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-input-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-input-focus) 25%, transparent);
+}
+
+button[type="submit"],
+.btn-primary {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+button[type="submit"]:active,
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  padding: var(--space-3) var(--space-5);
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   10. Duplicate / status messages
+   `#duplicate-message` is hidden by default via the `.hidden` utility class
+   (toggled by JS). When visible it uses the warning palette.
+   -------------------------------------------------------------------------- */
+.message {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+
+.message-warning {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning-border);
+}
+
+/* ----------------------------------------------------------------------------
+   11. Task list & items
+   The renderer adds the `.task-completed` class to a completed task's <li>.
+   -------------------------------------------------------------------------- */
+.task-list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.task-item .task-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.task-item .task-toggle {
+  flex: 0 0 auto;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.task-item .btn-delete {
+  flex: 0 0 auto;
+  padding: var(--space-1) var(--space-3);
+  background-color: transparent;
+  color: var(--color-danger);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.task-item .btn-delete:hover {
+  background-color: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  border-color: var(--color-danger);
+}
+
+/* Completed-task visual distinction: strikethrough + reduced opacity */
+.task-item.task-completed .task-label {
+  text-decoration: line-through;
+  color: var(--color-completed);
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------------------------------
+   12. Quick link list & items
+   -------------------------------------------------------------------------- */
+.quick-link-list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.quick-link-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.quick-link-item a {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-link-item a:hover {
+  text-decoration: underline;
+}
+
+.quick-link-item .btn-edit,
+.quick-link-item .btn-remove {
+  flex: 0 0 auto;
+  padding: var(--space-1) var(--space-3);
+  background-color: transparent;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.quick-link-item .btn-edit:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+.quick-link-item .btn-remove {
+  color: var(--color-danger);
+}
+
+.quick-link-item .btn-remove:hover {
+  background-color: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  border-color: var(--color-danger);
+}
+
+/* ----------------------------------------------------------------------------
+   13. Empty states — shown by the renderer when a collection is empty
+   -------------------------------------------------------------------------- */
+.empty-state {
+  margin-top: var(--space-4);
+  padding: var(--space-5);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-alt);
+}
+
+
+/* ============================================================================
+   14. Responsive layout & component styling (Task 2.2)
+   ----------------------------------------------------------------------------
+   Appended on top of the custom properties and base styling above. The actual
+   markup in index.html uses these real selectors (which differ from the
+   illustrative structure in the header comment of this file):
+
+     body
+      > header.dashboard-header
+          > .header-top
+              > .header-titles (#greeting, #clock)
+              > #theme-toggle
+          > .user-name-form (#user-name-input, #user-name-submit,
+                             #user-name-clear)
+      > main.dashboard-main
+          > section.panel#task-section  (#task-form.add-form, #task-list.item-list,
+                                          #duplicate-message, #task-empty-state)
+          > section.panel#quick-link-section (#quick-link-form.add-form,
+                                               #quick-link-list.item-list,
+                                               #quick-link-empty-state)
+
+   Breakpoints (Requirement 14):
+     < 768px        mobile   — single column, everything stacks
+     768–1023px     tablet   — two-column main grid
+     >= 1024px      desktop  — multi-column main grid, wider content
+
+   The earlier sections remain authoritative for custom properties, the base
+   reset, inputs/buttons, `.empty-state`, and the `.task-item` /
+   `.quick-link-item` / `.task-completed` item styling. The rules below only
+   ADD styling for the real selectors and the responsive breakpoints.
+   ========================================================================== */
+
+/* 14.1 Page shell — the markup has no `.dashboard` wrapper, so the content
+   width constraint and gutters are applied to body + the top-level
+   header/main. (Does not alter the custom properties or base reset above.) */
+body {
+  padding: var(--space-5) var(--space-4);
+}
+
+.dashboard-header,
+.dashboard-main {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+/* 14.2 Header — stack the title row above the user-name form. Overrides the
+   earlier flex-row `.dashboard-header` rule (equal specificity, later source
+   order wins); only the properties declared here change. */
+.dashboard-header {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: var(--space-4);
+}
+
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* The clock and theme toggle carry no helper class in the markup; style by id. */
+#clock {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#theme-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+#theme-toggle:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-primary);
+}
+
+#theme-toggle:active {
+  transform: scale(0.96);
+}
+
+/* 14.3 User-name form (lives in the header). */
+.user-name-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.user-name-form label {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.user-name-form input[type="text"] {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+/* The "Clear Name" button is type="button"; style it as a secondary control. */
+#user-name-clear {
+  padding: var(--space-3) var(--space-5);
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+#user-name-clear:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-primary);
+}
+
+/* 14.4 Main layout — responsive grid (mobile-first single column). */
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+/* 14.5 Panels (section cards). The markup uses `.panel`, not `.card`. */
+.panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+}
+
+.panel h2 {
+  margin-bottom: var(--space-4);
+  font-size: 1.1rem;
+}
+
+.focus-timer-display {
+  margin: var(--space-5) 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 12vw, 4rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.focus-timer-status {
+  min-height: 1.5em;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.focus-timer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.focus-timer-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.pomodoro-time-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.pomodoro-time-form label {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.pomodoro-time-form input {
+  width: 5rem;
+  text-align: center;
+}
+
+.task-sort-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.task-sort-control select {
+  max-width: 12rem;
+}
+
+/* 14.6 Add forms (task + quick link). The markup uses `.add-form`. */
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.add-form input[type="text"] {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+#quick-link-form input[type="text"] {
+  flex: 1 1 120px;
+}
+
+/* 14.7 Screen-reader-only helper (used by the task-form label). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 14.8 Error message variant — `#duplicate-message` carries `.message-error`.
+   (The base `.message` rule above provides padding/radius/size.) */
+.message-error {
+  background-color: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  color: var(--color-danger);
+  border: 1px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
+}
+
+/* 14.9 Item lists — the `<ul>` elements carry `.item-list`. (The earlier
+   `.task-list`/`.quick-link-list` rules targeted a different class name; this
+   styles the actual lists the renderers populate. The `.task-item` /
+   `.quick-link-item` rules in sections 11–12 still style the list rows, and
+   `.task-item.task-completed` provides the completed-task distinction.) */
+.item-list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ----------------------------------------------------------------------------
+   14.10 Responsive breakpoints (Requirement 14)
+   ========================================================================== */
+
+/* Tablet: 768–1023px → two-column main grid. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dashboard-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/* Desktop: ≥1024px → multi-column main grid with generous spacing. */
+@media (min-width: 1024px) {
+  .dashboard-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Mobile: <768px → single column; keep every control usable and readable. */
+@media (max-width: 767px) {
+  body {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  /* Compact the greeting so the header stays tidy on small screens. */
+  #greeting {
+    font-size: 1.4rem;
+  }
+
+  .header-top {
+    align-items: center;
+  }
+
+  /* Stack the quick-link form inputs above the button on narrow screens. */
+  #quick-link-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #quick-link-form input[type="text"] {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  #quick-link-form button[type="submit"] {
+    align-self: stretch;
+  }
+
+  /* Let the user-name input take the full row; buttons wrap below it. */
+  .user-name-form input[type="text"] {
+    flex: 1 1 100%;
+  }
+
+  /* Use 16px (1rem) text in inputs to prevent auto-zoom on focus on mobile. */
+  input[type="text"] {
+    font-size: 1rem;
+  }
+
+  /* Comfortable tap targets for list action buttons. */
+  .item-list .btn-delete,
+  .item-list .btn-edit,
+  .item-list .btn-remove {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.9rem;
+  }
+}

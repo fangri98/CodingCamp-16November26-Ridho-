@@ -1,0 +1,405 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create the project directory structure and `index.html`": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926375300
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926388328
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927987809
+      }
+    ],
+    "2.1 Define CSS custom properties for light/dark palettes and base dashboard styling": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926375763
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926388509
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927988117
+      }
+    ],
+    "2.2 Add responsive layout and component styling": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926376113
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927995272
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794928526866
+      }
+    ],
+    "3.1 Implement the Task pure functions on the `TLD.Logic` namespace": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926376254
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926388642
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927988248
+      }
+    ],
+    "3.2 Write property test for valid task addition": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926376401
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927995452
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794928527162
+      }
+    ],
+    "3.3 Write property test for duplicate task rejection": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926376612
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794928533543
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929024702
+      }
+    ],
+    "3.4 Write property test for empty/whitespace task name rejection": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926376768
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929032546
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929161367
+      }
+    ],
+    "3.5 Write property test for completion toggle": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926376900
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929169262
+      }
+    ],
+    "3.6 Write property test for task deletion": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377036
+      }
+    ],
+    "3.7 Write property test for task persistence round-trip": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377182
+      }
+    ],
+    "3.8 Write property test for corrupt task storage recovery": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377308
+      }
+    ],
+    "4.1 Implement the Quick Link pure functions on the `TLD.Logic` namespace": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377448
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927995606
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794928527304
+      }
+    ],
+    "4.2 Write property test for valid quick link addition": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377584
+      }
+    ],
+    "4.3 Write property test for URL scheme normalization": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377707
+      }
+    ],
+    "4.4 Write property test for empty/whitespace quick link rejection": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377834
+      }
+    ],
+    "4.5 Write property test for quick link edit in place": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926377956
+      }
+    ],
+    "4.6 Write property test for quick link removal": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378091
+      }
+    ],
+    "4.7 Write property test for quick link persistence round-trip": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378226
+      }
+    ],
+    "4.8 Write property test for corrupt quick link storage recovery": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378348
+      }
+    ],
+    "5.1 Implement the Greeting and Theme pure functions on the `TLD.Logic` namespace": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378483
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794928533742
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929024936
+      }
+    ],
+    "5.2 Write property test for user name trimming": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378603
+      }
+    ],
+    "5.3 Write property test for greeting name inclusion": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378741
+      }
+    ],
+    "5.4 Write property test for theme toggle": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378860
+      }
+    ],
+    "5.5 Write property test for theme persistence round-trip": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926378981
+      }
+    ],
+    "5.6 Write property test for invalid/corrupt theme fallback": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926379101
+      }
+    ],
+    "6. Checkpoint - Logic layer complete": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926379227
+      }
+    ],
+    "7.1 Implement `TLD.Storage` over `window.localStorage`": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926379412
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929032673
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929161597
+      }
+    ],
+    "8.1 Implement `TLD.UI` Renderer functions": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926379645
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929169432
+      }
+    ],
+    "9.1 Implement the ClockService": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926379799
+      }
+    ],
+    "10.1 Implement `TLD.UI.bindEvents`": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926379934
+      }
+    ],
+    "11.1 Implement `AppInit.init` on `DOMContentLoaded`": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380055
+      }
+    ],
+    "12. Checkpoint - Dashboard wired": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380181
+      }
+    ],
+    "13.1 Create the browser-based test harness and shared test scaffolding": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380296
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926388779
+      },
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927988464
+      }
+    ],
+    "13.2 Write example-based unit tests for UI and edge cases": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380418
+      }
+    ],
+    "13.3 Write integration tests with the storage fake": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380539
+      }
+    ],
+    "13.4 Write smoke tests for setup, timing, and structure": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380676
+      }
+    ],
+    "14. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794926380810
+      }
+    ],
+    "1. Set up project structure and HTML markup": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794927987985
+      }
+    ],
+    "2. Implement CSS theming and responsive layout": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794928527040
+      }
+    ],
+    "7. Implement the Storage adapter": [
+      {
+        "executionId": "65f04256-5e89-460f-8f78-f32a0d28ed65",
+        "chatSessionId": "sess_988ea4b3-9a00-4fd0-b5cc-687b29d97e8b",
+        "timestamp": 1794929161717
+      }
+    ]
+  }
+}
